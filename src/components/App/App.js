@@ -1,27 +1,16 @@
-import React, { Component } from 'react';
-import todoService from '../../todoService';
-import store from '../../redux/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
-const getTodos = async () => {
-  return await todoService.getTodos();
-}
+import store from '../../redux/store'
+import TodoContainer from '../Todo/TodoContainer'
 
-class App extends Component {
-
-  componentDidMount() {
-    getTodos().then(todos => console.log(todos));
-  }
-
-  render() {
+const App = () => {
     return (
-      <Provider store={store}>
-        <div className="App">
-          <h1>Todo, or not todo.</h1>
-        </div>
-      </Provider>
-    );
-  }
+        <Provider store={store}>
+            <h1>Todo, or not todo.</h1>
+            <TodoContainer />
+        </Provider>
+    )
 }
 
-export default App;
+export default App

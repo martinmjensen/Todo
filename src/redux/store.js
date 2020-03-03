@@ -1,13 +1,14 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+// import createSagaMiddleware from 'redux-saga'
 
-const todoReducer = (state = {}, action) => {
-    return state;
-}
+import todoReducer from '../redux/ducks/todo'
+
 
 const rootReducer = combineReducers({
-    todoReducer
+    todo: todoReducer,
 })
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools())
 
-export default store;
+export default store
