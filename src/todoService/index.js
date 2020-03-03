@@ -7,7 +7,7 @@ const validateTodo = (todo) => {
 }
 
 const sleep = () => {
-    const maxSleepMs = 0
+    const maxSleepMs = 2000
     return new Promise((resolve) => setTimeout(resolve, Math.random() * maxSleepMs))
 }
 

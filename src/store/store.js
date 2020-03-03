@@ -1,14 +1,9 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 
-import todoReducer from '../redux/ducks/todo'
-import rootSaga from '../sagas/todoSaga'
-
-
-const rootReducer = combineReducers({
-    todo: todoReducer,
-})
+import rootReducer from '../reducers/rootReducer'
+import rootSaga from '../sagas/todoSagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
