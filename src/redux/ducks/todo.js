@@ -1,13 +1,13 @@
-const GET_TODOS = 'GET_TODOS'
+/* 
+    Get todos
+*/
+const GET_TODOS_REQUESTED = 'GET_TODOS_REQUESTED'
 
-// Todo action creator
+export const getTodos = () => ({ type: GET_TODOS_REQUESTED })
 
-const getTodos = () => ({
-    type: GET_TODOS
-})
-
-// Todo reducer
-
+/* 
+    Todo reducer
+*/
 const initialState = {
     isLoading: false,
     todos: [],
