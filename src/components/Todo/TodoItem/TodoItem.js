@@ -4,7 +4,7 @@ import { useSpring, animated } from 'react-spring'
 import './TodoItem.scss'
 
 const TodoItem = ({ todo, handleDelete, handleToggle }) => {
-    // Fade animation for the todo items
+    // Fade animation on mounting
     const fade = useSpring({
         opacity: 1,
         from: { opacity: 0 },

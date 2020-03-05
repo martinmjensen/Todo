@@ -34,4 +34,4 @@ const TodoForm = ({ handleAdd }) => {
     )
 }
 
-export default TodoForm
+export default React.memo(TodoForm)

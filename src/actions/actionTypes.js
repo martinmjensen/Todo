@@ -1,3 +1,4 @@
+// Action types
 export const GET_TODOS = 'GET_TODOS'
 export const GET_TODOS_SUCCEEDED = 'GET_TODOS_SUCCEEDED'
 export const GET_TODOS_FAILED = 'GET_TODOS_FAILED'
