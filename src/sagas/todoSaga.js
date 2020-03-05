@@ -40,8 +40,14 @@ function* addTodo(action) {
     }
 }
 
+function* watchDeleteTodo() {
+    while (true) {
+        const action = yield take(types.DELETE_TODO)
+        yield call(deleteTodo, action)
+    }
+}
+
 function* watchGetTodos() { yield takeLatest(types.GET_TODOS, getTodos) }
-function* watchDeleteTodo() { yield takeLatest(types.DELETE_TODO, deleteTodo) }
 function* watchToggleTodo() { yield takeEvery(types.TOGGLE_TODO, toggleTodo) }
 function* watchAddTodo() { yield takeEvery(types.ADD_TODO, addTodo) }
 
