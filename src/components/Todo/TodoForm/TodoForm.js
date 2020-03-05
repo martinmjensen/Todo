@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import SectionHeader from '../../SectionHeader/SectionHeader'
 import './TodoForm.scss'
@@ -32,6 +33,10 @@ const TodoForm = ({ handleAdd }) => {
             </form>
         </section>
     )
+}
+
+TodoForm.propTypes = {
+    handleAdd: PropTypes.func.isRequired,
 }
 
 export default React.memo(TodoForm)

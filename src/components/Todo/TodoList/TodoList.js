@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './TodoList.scss'
 
@@ -7,5 +8,9 @@ const TodoList = ({ children }) => (
         {children}
     </section>
 )
+
+TodoList.propTypes = {
+    children: PropTypes.node,
+}
 
 export default TodoList

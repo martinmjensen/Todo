@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useSpring, animated } from 'react-spring'
 
 import './TodoItem.scss'
@@ -32,6 +33,12 @@ const TodoItem = ({ todo, handleDelete, handleToggle }) => {
             </button>
         </animated.div>
     )
+}
+
+TodoItem.propTypes = {
+    todo: PropTypes.object.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+    handleToggle: PropTypes.func.isRequired,
 }
 
 export default React.memo(TodoItem)
