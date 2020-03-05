@@ -1,16 +1,14 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 
-import store from '../../store/store'
 import Header from '../Header/Header'
-import TodoContainer from '../Todo/TodoContainer'
+import TodoContainer from '../Todo/TodoContainer/TodoContainer'
 
 const App = () => {
     return (
-        <Provider store={store}>
+        <div className='page-container'>
             <Header />
             <TodoContainer />
-        </Provider>
+        </div>
     )
 }
 

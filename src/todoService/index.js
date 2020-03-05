@@ -7,7 +7,7 @@ const validateTodo = (todo) => {
 }
 
 const sleep = () => {
-    const maxSleepMs = 2000
+    const maxSleepMs = 1000
     return new Promise((resolve) => setTimeout(resolve, Math.random() * maxSleepMs))
 }
 
@@ -54,7 +54,11 @@ class TodoService {
             if (!valid) {
                 return Promise.reject(ERROR_NOT_VALID)
             }
-            const id = Math.max(...mockedTodos.map(t => t.id)) + 1
+            let id = 0
+            if (mockedTodos.length > 0) {
+                id = Math.max(...mockedTodos.map(t => t.id)) + 1
+            }
+
             const createdTodo = { ...todo, id }
 
             mockedTodos = [...mockedTodos, createdTodo]

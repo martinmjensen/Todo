@@ -1,0 +1,39 @@
+
+header {
+    border-bottom: 2px solid #EBEBEB;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+
+    .title {
+        font-size: 3em;
+        font-weight: 600;
+        margin-bottom: 30px;
+        margin-top: 10px;
+    }
+
+    .sub-title {
+        color: #B2B2B2;
+        font-weight: normal;
+        font-size: 1.3em;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    header {
+        border-bottom: 0;
+        justify-content: center;
+
+        .title {
+            font-size: 2.4em;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    
+        .sub-title {
+            display: none;
+        }
+    }
+}

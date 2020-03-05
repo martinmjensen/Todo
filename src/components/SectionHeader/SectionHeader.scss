@@ -1,0 +1,17 @@
+
+.section-header {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    background: url(assets/loader.gif) no-repeat;
+    background-size: cover;
+    margin-left: 10px;
+}
