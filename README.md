@@ -21,3 +21,17 @@ The app is fully responsive and can be both enjoyed on the mobile as well as on 
 
 ### Accessibility
 Good support for accessibility. All of the app functions are fully accessible through the keyboard, and the accessibility tree is descriptive using semantic tags and aria-labels.
+
+## Ways to improve
+
+Due to limited development time the app has several areas where improvement would be useful. Such areas include:
+
+#### Testing
+Tests would help ensuring that the app runs correctly and that none of the functionality is broken when implementing new features / changes. Especially Redux and Saga would practical to have tests for. It would also be practical to test important components like the todo container.
+
+#### Accessibility
+Even though the app is quite accessible, not enough time has been spent testing and ensuring accessibility for all uses groups. To do this, I would follow the guidelines given by the Digitaliseringsdirektoratet: https://uu.difi.no/krav-og-regelverk/wcag-20-standarden
+
+#### User experience
+Due to time constraints the async functionality and subsequent delays that this entails, the user experience is not optimal. I experimented with doing all the changes in the local store and sending requests to the server in the background. This improved the app speed and user experience greatly but lead to rewriting much of the backend logic for creating new todos etc. This also meant that the app displayed a representation of what was on the server, but not the actual server content.
+
