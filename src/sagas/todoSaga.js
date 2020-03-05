@@ -1,4 +1,4 @@
-import { all, call, cancel, fork, put, take, takeLatest, takeEvery } from 'redux-saga/effects'
+import { all, call, put, take, takeLatest, takeEvery } from 'redux-saga/effects'
 
 import todoService from '../todoService'
 import * as types from '../actions/actionTypes'
@@ -40,6 +40,7 @@ function* addTodo(action) {
     }
 }
 
+// watchDeleteTodo uses the call effect that blocks multiple delete requests to the server
 function* watchDeleteTodo() {
     while (true) {
         const action = yield take(types.DELETE_TODO)
@@ -51,6 +52,7 @@ function* watchGetTodos() { yield takeLatest(types.GET_TODOS, getTodos) }
 function* watchToggleTodo() { yield takeEvery(types.TOGGLE_TODO, toggleTodo) }
 function* watchAddTodo() { yield takeEvery(types.ADD_TODO, addTodo) }
 
+// rootSaga runs the watchers in parallel
 export default function* rootSaga() {
     yield all([
         watchGetTodos(),

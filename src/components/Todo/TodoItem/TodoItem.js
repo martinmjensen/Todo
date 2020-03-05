@@ -4,15 +4,16 @@ import { useSpring, animated } from 'react-spring'
 import './TodoItem.scss'
 
 const TodoItem = ({ todo, handleDelete, handleToggle }) => {
+    // Fade animation for the todo items
     const fade = useSpring({
         opacity: 1,
         from: { opacity: 0 },
         config: { duration: 400 }
     })
 
-    const handleChange = () => {
-        handleToggle(todo.id)
-    }
+    // Event handlers
+    const handleChange = () => { handleToggle(todo.id) }
+    const handleClick = () => { handleDelete(todo.id) }
 
     return (
         <animated.div
@@ -24,7 +25,7 @@ const TodoItem = ({ todo, handleDelete, handleToggle }) => {
                 <input id={todo.id} type='checkbox' onChange={handleChange} checked={todo.completed} />
                 <label htmlFor={todo.id}>{todo.title}</label>
             </div>
-            <button onClick={() => handleDelete(todo.id)} aria-label='Delete todo'>
+            <button onClick={handleClick} aria-label='Delete todo'>
                 <span className='cross-container'>
                     <span className='cross'></span>
                 </span>

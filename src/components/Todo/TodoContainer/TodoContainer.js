@@ -11,21 +11,31 @@ const TodoContainer = () => {
     const list = useSelector(state => state.todo)
     const dispatch = useDispatch()
 
+    // Get todos after component mounts
     useEffect(() => { dispatch(actions.getTodos()) }, [])
 
+    // Event handlers
     const handleAdd = title => { dispatch(actions.addTodo({ title, completed: false, })) }
     const handleDelete = id => { dispatch(actions.deleteTodo(id)) }
     const handleToggle = id => { dispatch(actions.toggleTodo(id)) }
 
-    let componentContent = <p className='loading-text'>Loading todos...</p>
+    const noTodos = list.todos.length > 0 ? false : true
 
-    if (!list.isLoading) {
+    // Content of the page before todos are fetched
+    let componentContent = <p className='loading-text'>Ingen todos :) Lag din første!</p>
+
+    if (list.isLoading && noTodos) {
+        componentContent = <p className='loading-text'>Loading...</p>
+    } else if (!noTodos) {
         componentContent = (
             <TodoList>
                 <SectionHeader title='Dine todos'>
-                    <div style={{ opacity: (list.isWorking ? '1' : '0') }} className='spinner'></div>
+                    <div style={{ opacity: (list.isLoading ? '1' : '0') }} className='spinner'></div>
                 </SectionHeader>
-                {list.error && <p className='error-text'>Hmm... noe gikk galt her</p>}
+                {list.error &&
+                    <p className='error-text'>Hmm... Det skjedde dessverre en feil.</p>
+                }
+
                 {list.todos.map(item => (
                     <TodoItem
                         todo={item}

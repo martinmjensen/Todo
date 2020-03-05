@@ -23,17 +23,6 @@ main {
   grid-gap: 20px;
 }
 
-.loading-text {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.error-text {
-  font-weight: 600;
-  color: #e65050;
-  margin: 0 0 22px 0;
-}
-
 @media screen and (max-width: $mobile-screen-width) {
   .page-container {
     margin-top: 0;

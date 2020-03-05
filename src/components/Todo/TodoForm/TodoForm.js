@@ -6,12 +6,13 @@ import './TodoForm.scss'
 const TodoForm = ({ handleAdd }) => {
     const [title, setTitle] = useState('')
 
+    // Event handlers
     const handleChange = event => { setTitle(event.target.value) }
     const handleSubmit = event => {
         event.preventDefault()
         if (title) {
             handleAdd(title)
-            setTitle('')
+            setTitle('') // Reset input value when form is submitted
         }
     }
 

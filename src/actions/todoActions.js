@@ -1,7 +1,7 @@
 import * as types from './actionTypes'
 
 /* 
-    Get todos
+    Get todo action creators
 */
 export const getTodos = () => ({
     type: types.GET_TODOS,
@@ -16,7 +16,7 @@ export const getTodosFailed = error => ({
 })
 
 /*  
-    Delete todo
+    Delete todo action creators
 */
 export const deleteTodo = id => ({
     type: types.DELETE_TODO,
@@ -32,7 +32,7 @@ export const deleteFailed = error => ({
 })
 
 /*  
-    Toggle todo
+    Toggle todo action creators
 */
 export const toggleTodo = id => ({
     type: types.TOGGLE_TODO,
@@ -47,8 +47,8 @@ export const toggleFailed = error => ({
     payload: { error }
 })
 
-/*  
-    Add todo
+/*
+    Add todo action creators
 */
 export const addTodo = todo => ({
     type: types.ADD_TODO,

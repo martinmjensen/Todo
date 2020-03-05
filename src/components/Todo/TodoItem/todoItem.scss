@@ -77,6 +77,11 @@
         }
     }
 
+    /* 
+        For more info about custom accessible checkboxes go to:
+        https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3 
+    */
+
     button {
         height: 30px;
         width: 30px;
@@ -120,8 +125,3 @@
         }
     }
 }
-
-/* 
-For more info about custom accessible checkboxes: 
-https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3 
-*/
