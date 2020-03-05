@@ -35,3 +35,5 @@ Even though the app is quite accessible, not enough time has been spent testing 
 #### User experience
 Due to time constraints the async functionality and subsequent delays that this entails, the user experience is not optimal. I experimented with doing all the changes in the local store and sending requests to the server in the background. This improved the app speed and user experience greatly but lead to rewriting much of the backend logic for creating new todos etc. This also meant that the app displayed a representation of what was on the server, but not the actual server content.
 
+#### Animation
+Another way to improve the experience is animations. Currently the app only has one animation; when the todo items are rendered. Having React Spring as a dependency for just one fade in is a bit overkill, but I thought that I’d definitely add more animations in the future.
