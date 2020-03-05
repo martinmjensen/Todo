@@ -1,3 +1,4 @@
+@import '../../../styles/variables.scss';
 
 .todo-item {
     background-color: #262626;
@@ -12,32 +13,22 @@
     &.checked {
         background-color: #EFEFEF;
         color: #777777;
-
-        /* label:hover::before {
-            opacity: 0.7;
-        } */
     }
 
     label {
         position: relative;
         display: inline-block;
         cursor: pointer;
-        
-        /*16px width of fake checkbox + 6px distance between fake checkbox and text*/
         padding: 5px;
         padding-left: 22px;
-        margin-left: 10px;
+        margin-left: 8px;
 
         &::before,
         &::after {
             position: absolute;
             content: "";
-            
-            /*Needed for the line-height to take effect*/
-            display: inline-block;
         }
 
-        /*Outer box of the fake checkbox*/
         &::before {
             height: 20px;
             width: 20px;
@@ -56,7 +47,6 @@
             background-color: rgba(200,200,200, 0.6);
         }
         
-        /*Checkmark of the fake checkbox*/
         &::after {
             height: 5px;
             width: 9px;
@@ -72,15 +62,9 @@
     input[type="checkbox"] {
         opacity: 0;
 
-        /*Hide the checkmark by default*/
-        & + label::after {
-            opacity: 0;
-        }
-
-        /*Unhide on the checked state*/
-        &:checked + label::after {
-            opacity: 1;
-        }
+        & + label::after                    { opacity: 0; }
+        &:checked + label::after            { opacity: 1; }
+        &:checked + label:hover::before     { opacity: 0.7; }
 
         &:checked + label::before {
             background-color: #38BF77;
@@ -88,17 +72,8 @@
             transition: opacity 0.2s;
         } 
 
-        &:checked + label:hover::before {
-            opacity: 0.7;
-        }
-        
-        /*Adding focus styles on the outer-box of the fake checkbox*/
         &:focus + label::before {
-            outline: rgb(59, 153, 252) auto 5px;
-        }
-
-        &:active + label::before {
-            outline: none;
+            box-shadow: $custom-outline;   
         }
     }
 
@@ -111,35 +86,42 @@
         font-size: 1em;
         margin-right: 8px;
         cursor: pointer;
+        outline: none;
+        border-radius: 6px;
 
-        .mdiv {
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(234, 97, 97, 0.8);
+        }
+
+        .cross-container, .cross {
             display: block;
             height: 20px;
             width: 2px;
-            margin-left: 7px;
             background-color: #A2A2A2;
+            display: block;
+        }
+
+        .cross-container {
+            margin-left: 7px;
             transform: rotate(45deg);
             z-index: 1;
               
-            .md {
-                height: 20px;
-                width: 2px;
-                background-color: #A2A2A2;
+            .cross {
                 transform: rotate(90deg);
                 z-index: 2;
-                display: block;
             }
         }
 
         &:hover {
-            .mdiv, .md {
+            .cross-container, .cross {
                 background-color: #EA6161;
                 transition: background-color 0.2s;
             }
         }
-
-        &:active {
-            outline: none;
-        }
     }
 }
+
+/* 
+For more info about custom accessible checkboxes: 
+https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3 
+*/

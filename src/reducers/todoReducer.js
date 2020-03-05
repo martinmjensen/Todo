@@ -1,11 +1,9 @@
-import update from 'immutability-helper'
 import * as types from '../actions/actionTypes'
 
 const initialState = {
     isLoading: false,
     todos: [],
     error: null,
-    nextTodoId: 0,
     isWorking: false,
 }
 
@@ -14,43 +12,51 @@ const todoReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case types.GET_TODOS:
-            return { ...state, isLoading: true, }
-        case types.GET_TODOS_SUCCEEDED:
-            return {
-                ...state,
-                todos: action.payload.todos,
-                isLoading: false,
-                nextTodoId: state.todos.length
-            }
-        case types.GET_TODOS_FAILED:
-            return {
-                ...state,
-                error: action.payload.error,
-                isLoading: false,
-            }
+            newState.isLoading = true
+            return newState
 
         case types.DELETE_TODO:
         case types.TOGGLE_TODO:
         case types.ADD_TODO:
-            return { ...state, isWorking: true, }
+            newState.isWorking = true
+            return newState
+
+        case types.GET_TODOS_SUCCEEDED:
+            newState.todos = action.payload.todos
+            newState.isLoading = false
+            return newState
 
         case types.DELETE_SUCCEEDED:
-            newState.isWorking = false
             const todoId = newState.todos.findIndex(todo => todo.id === action.payload.id)
-            return update(newState, { todos: { $splice: [[todoId, 1]] } })
-        case types.TOGGLE_SUCCEEDED:
+            newState.todos.splice(todoId, 1)
             newState.isWorking = false
+            return newState
+
+        case types.TOGGLE_SUCCEEDED:
             const todoIndex = newState.todos.findIndex(todo => todo.id === action.payload.todo.id)
-            return update(newState, { todos: { $splice: [[todoIndex, 1, action.payload.todo]] } })
+            newState.todos.splice(todoIndex, 1, action.payload.todo)
+            newState.isWorking = false
+            return newState
+
         case types.ADD_TODO_SUCCEEDED:
             newState.isWorking = false
-            return update(newState, { todos: { $push: [action.payload.todo] } })
+            newState.todos.push(action.payload.todo)
+            return newState
+
+        case types.GET_TODOS_FAILED:
+            newState.error = action.payload.error
+            newState.isLoading = false
+            return newState
 
         case types.DELETE_FAILED:
         case types.TOGGLE_FAILED:
         case types.ADD_TODO_FAILED:
             console.error(`Server error: ${action.payload.error}`)
-            return { ...state, error: action.payload.error, isWorking: false, isLoading: false, }
+            newState.error = action.payload.error
+            newState.isWorking = false
+            newState.isloading = false
+            return newState
+
         default:
             return state
     }

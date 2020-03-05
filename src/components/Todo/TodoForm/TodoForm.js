@@ -1,23 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 import SectionHeader from '../../SectionHeader/SectionHeader'
-import { addTodo } from '../../../actions/todoActions'
 import './TodoForm.scss'
 
-const TodoForm = (props) => {
+const TodoForm = ({ handleAdd }) => {
     const [title, setTitle] = useState('')
-    const dispatch = useDispatch()
 
-    const handleChange = event => {
-        setTitle(event.target.value)
-    }
-
+    const handleChange = event => { setTitle(event.target.value) }
     const handleSubmit = event => {
         event.preventDefault()
-
         if (title) {
-            dispatch(addTodo({ title, completed: false, }))
+            handleAdd(title)
             setTitle('')
         }
     }
@@ -32,7 +25,8 @@ const TodoForm = (props) => {
                     name='Todo text'
                     value={title}
                     onChange={handleChange}
-                    placeholder='Legg til en ny todo' />
+                    placeholder='Legg til en ny todo'
+                    aria-label='Ny todo tekst' />
                 <button type='submit'>Legg til</button>
             </form>
         </section>

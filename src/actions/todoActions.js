@@ -31,7 +31,6 @@ export const deleteFailed = error => ({
     payload: { error }
 })
 
-
 /*  
     Toggle todo
 */

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSpring, animated } from 'react-spring'
 
 import './TodoItem.scss'
@@ -15,14 +15,18 @@ const TodoItem = ({ todo, handleDelete, handleToggle }) => {
     }
 
     return (
-        <animated.div className={`todo-item ${todo.completed ? 'checked' : ''}`} style={fade}>
+        <animated.div
+            className={`todo-item ${todo.completed ? 'checked' : ''}`}
+            style={fade}
+            aria-label={`Todo ${todo.id}`}
+        >
             <div className='checkbox-container'>
                 <input id={todo.id} type='checkbox' onChange={handleChange} checked={todo.completed} />
                 <label htmlFor={todo.id}>{todo.title}</label>
             </div>
             <button onClick={() => handleDelete(todo.id)} aria-label='Delete todo'>
-                <span className='mdiv'>
-                    <span className='md'></span>
+                <span className='cross-container'>
+                    <span className='cross'></span>
                 </span>
             </button>
         </animated.div>

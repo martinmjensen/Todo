@@ -1,4 +1,4 @@
-import { call, put, takeLatest, takeEvery } from 'redux-saga/effects'
+import { all, call, cancel, fork, put, take, takeLatest, takeEvery } from 'redux-saga/effects'
 
 import todoService from '../todoService'
 import * as types from '../actions/actionTypes'
@@ -15,7 +15,7 @@ function* getTodos(action) {
 
 function* deleteTodo(action) {
     try {
-        const deleteTodo = yield call(todoService.deleteTodo, action.payload.id)
+        yield call(todoService.deleteTodo, action.payload.id)
         yield put(actions.deleteSucceeded(action.payload.id))
     } catch (error) {
         yield put(actions.deleteFailed(error))
@@ -40,9 +40,16 @@ function* addTodo(action) {
     }
 }
 
+function* watchGetTodos() { yield takeLatest(types.GET_TODOS, getTodos) }
+function* watchDeleteTodo() { yield takeEvery(types.DELETE_TODO, deleteTodo) }
+function* watchToggleTodo() { yield takeEvery(types.TOGGLE_TODO, toggleTodo) }
+function* watchAddTodo() { yield takeEvery(types.ADD_TODO, addTodo) }
+
 export default function* rootSaga() {
-    yield takeLatest(types.GET_TODOS, getTodos)
-    yield takeEvery(types.DELETE_TODO, deleteTodo)
-    yield takeLatest(types.TOGGLE_TODO, toggleTodo)
-    yield takeLatest(types.ADD_TODO, addTodo)
+    yield all([
+        watchGetTodos(),
+        watchDeleteTodo(),
+        watchToggleTodo(),
+        watchAddTodo(),
+    ])
 }

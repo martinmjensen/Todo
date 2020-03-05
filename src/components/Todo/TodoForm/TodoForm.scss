@@ -1,6 +1,4 @@
-
-$blue-color: #4765E2;
-$dark-blue-color: #244df7;
+@import '../../../styles/variables.scss';
 
 .todo-form {
     display: flex;
@@ -19,6 +17,7 @@ $dark-blue-color: #244df7;
 
         &:focus {
             outline: none;
+            box-shadow: $custom-outline;
             border-color: $blue-color;
         }
     }
@@ -35,6 +34,7 @@ $dark-blue-color: #244df7;
         font-weight: bold;
         transition: background 0.2s;
         cursor: pointer;
+        outline: none;
 
         &:hover {
             background-color: $dark-blue-color;
@@ -43,6 +43,10 @@ $dark-blue-color: #244df7;
 
         &:active {
             background-color: black;
+        }
+
+        &:focus {
+            box-shadow: $custom-outline;
         }
     }
 }
