@@ -4,7 +4,7 @@ import todoService from '../todoService'
 import * as types from '../actions/actionTypes'
 import * as actions from '../actions/todoActions'
 
-function* getTodos(action) {
+export function* getTodos(action) {
     try {
         const todos = yield call(todoService.getTodos)
         yield put(actions.getTodosSucceeded(todos))
