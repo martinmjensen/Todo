@@ -22,6 +22,7 @@ function* deleteTodo(action) {
     }
 }
 
+
 function* toggleTodo(action) {
     try {
         const todo = yield call(todoService.toggleTodo, action.payload.id)
